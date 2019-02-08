@@ -37,12 +37,16 @@ public:
 	// @usage：based on the line'e empty spots and number of same color pieces
 	int score_dict(int empty, int pieces, int k);
 
+	// @return true for break, false for continue
+	// helper function for evaluate_single_space
+	int count_piece(int &empty, int &same, int turn, int i, int j);
+
 	// @return evaluation score for the empty spot valid[i][j]
 	// @usage: evaluate all eight directions for the space
 	int evaluate_single_space(int i, int j, int turn);
 
 	// @return: score for the whole board
-	int evaluate_board();
+	int evaluate_board(int turn);
 
 	// @usage: find all valid moves in the board (within constrains)
 	void find_empty(vector<pair<int, int> > &valid);
