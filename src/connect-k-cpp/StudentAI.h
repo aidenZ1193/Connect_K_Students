@@ -21,8 +21,8 @@ public:
 	// stores the current board with 0 = empty, 1&2 for black&white
 	Board my_board;
 	// stores the evaluation score for each empty spot, for AI and the other player(rival)
-	unordered_map<pair<int, int>, int> AI_values;
-	unordered_map<pair<int, int>, int> rival_values;
+	//unordered_map<pair<int, int>, int> AI_values;
+	//unordered_map<pair<int, int>, int> rival_values;
 
 
 	// @return: board's evaluation score
