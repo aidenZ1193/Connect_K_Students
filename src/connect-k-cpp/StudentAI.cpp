@@ -47,6 +47,8 @@ Move StudentAI::GetMove(Move board)
 		return m;
 	}
 
+	my_board.board[board.row][board.col] = 2;
+
 	// 2. generate all points
 	// stores all valid spots
 	vector<pair<int, int> > valid;
