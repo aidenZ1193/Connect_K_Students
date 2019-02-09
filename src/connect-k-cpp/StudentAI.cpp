@@ -13,6 +13,17 @@ StudentAI::StudentAI(int col,int row,int k,int g)
 	max_row = row/2+2;
 }
 
+void StudentAI::update_min_max_row(Move m){
+	if(m.col < min_col+2)
+		min_col = (m.col - 2 > 0)? m.col - 2 : 0;
+	if(m.col > max_col-2)
+		max_col = (m.col + 2 < my_board.col)? m.col + 2 : my_board.col;
+	if(m.row < min_row+2)
+		min_row = (m.row - 2 > 0)? m.row - 2 : 0;
+	if(m.row > max_row+2)
+		min_row = (m.row + 2 < my_board.row)? m.row + 2 : 0;
+}
+
 // oponent: 2
 // AI: 1
 // this function works as the first round's max
@@ -31,6 +42,8 @@ Move StudentAI::GetMove(Move board)
 		my_board.board[my_board.row/2][my_board.col/2] = 1;
 		m.row = my_board.row/2;
 		m.col = my_board.col/2;
+		// update min, max values
+		update_min_max_row(m);
 		return m;
 	}
 
@@ -68,6 +81,8 @@ Move StudentAI::GetMove(Move board)
 	m.col = usable[i].second;
 
 	my_board.board[usable[i].first][usable[i].second] = 1;
+	my_board.ShowBoard();
+	update_min_max_row(m);
 	
 	return m;
 
@@ -166,7 +181,7 @@ void StudentAI::find_empty(vector<pair<int, int> > &valid){
 	}else{
 		// enabled gravity, pick from lowest in each column
 		for(int i = min_col; i < max_col; i++ ){
-			for(int j = 0; i < max_row; j--){
+			for(int j = 0; i < max_row; j++){
 				if(my_board.board[j][i] == 0){
 					// pick only lowest one in each row
 					valid.push_back(make_pair(j, i));

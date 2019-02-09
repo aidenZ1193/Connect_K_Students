@@ -24,6 +24,8 @@ public:
 	//unordered_map<pair<int, int>, int> AI_values;
 	//unordered_map<pair<int, int>, int> rival_values;
 
+	// update the min_row, etc
+	void update_min_max_row(Move m);
 
 	// @return: board's evaluation score
 	// @usage: emulate AI's move and the following moves
