@@ -46,8 +46,15 @@ Move StudentAI::GetMove(Move board)
 		update_min_max_row(m);
 		return m;
 	}
-
-	my_board.board[board.row][board.col] = 2;
+	if(my_board.g == 0)
+		my_board.board[board.row][board.col] = 2;
+	else{
+		// gravity mode is on, put the move to the bottom of board
+		for(int i = my_board.row-1; i >= 0; i--){
+			if(my_board.board[i][board.col] == 0)
+				my_board.board[i][board.col] = 2;
+		}
+	}
 
 	// 2. generate all points
 	// stores all valid spots
@@ -56,7 +63,7 @@ Move StudentAI::GetMove(Move board)
 	vector<pair<int, int> > usable;
 	find_empty(valid);
 	int len = valid.size();
-	int max_score = 0, depth = 2;	// max - min - max- min - max
+	int max_score = INT_MIN, depth = 1;	// max - min - max- min - max
 	for(int i = 0; i < len; i++){
 		// change color in the spot to 1, which is the AI's move
 		my_board.board[valid[i].first][valid[i].second] = 1;
@@ -82,8 +89,14 @@ Move StudentAI::GetMove(Move board)
 	m.row = usable[i].first;
 	m.col = usable[i].second;
 
+	// debug
+	cout<<"the list of usable in get_move:"<<endl;
+	for(int i = 0; i < usable.size(); i++)
+		cout<<"i = "<<i<<" usable is "<<usable[i].first<<" "<<usable[i].second<<endl;
+
+
 	my_board.board[usable[i].first][usable[i].second] = 1;
-	my_board.ShowBoard();
+	//my_board.ShowBoard();
 	update_min_max_row(m);
 	
 	return m;
@@ -96,6 +109,7 @@ int StudentAI::min_move(pair<int, int> &spot, int depth){
 	int score = evaluate_board(2);
 	int win = my_board.IsWin();
 	if(win != 0 || depth == 0){
+		//cout<<"spot "<<spot.first<<" "<<spot.second<<"score from min: "<<score<<endl;
 		return score;
 	}
 
@@ -104,7 +118,7 @@ int StudentAI::min_move(pair<int, int> &spot, int depth){
 	find_empty(valid);
 
 	int len = valid.size();
-	int min_score = pow(10, my_board.k+1);
+	int min_score = INT_MAX;
 	for(int i = 0; i < len; i++){
 		my_board.board[valid[i].first][valid[i].second] = 2;
 		int temp = max_move(valid[i], depth-1);
@@ -138,7 +152,7 @@ int StudentAI::max_move(pair<int, int> &spot, int depth){
 	find_empty(valid);
 
 	int len = valid.size();
-	int max_score = 0;
+	int max_score = INT_MIN;
 	// from all points in valid[][], perform min-max search with depth
 	for(int i = 0; i < len; i++){
 		my_board.board[valid[i].first][valid[i].second] = 1;
@@ -183,7 +197,7 @@ void StudentAI::find_empty(vector<pair<int, int> > &valid){
 	}else{
 		// enabled gravity, pick from lowest in each column
 		for(int i = min_col; i < max_col; i++ ){
-			for(int j = 0; i < max_row; j++){
+			for(int j = my_board.row - 1; j >= 0; j--){
 				if(my_board.board[j][i] == 0){
 					// pick only lowest one in each row
 					valid.push_back(make_pair(j, i));
@@ -192,11 +206,15 @@ void StudentAI::find_empty(vector<pair<int, int> > &valid){
 			}
 		}
 	}
+	// debug
+		//cout<<"empty spot: "<<endl;
+		//for(int i = 0; i < valid.size(); i++)
+		//	cout<<"i = "<<i<<", "<<valid[i].first<<", "<<valid[i].second<<endl;
 }
 
 // @return true for break, false for continue
 // helper function for evaluate_single_space
-int StudentAI::count_piece(int &empty, int &same, int turn, int i, int j){
+bool StudentAI::count_piece(int &empty, int &same, int turn, int i, int j){
 	//bool res = false;
 	if(my_board.board[i][j] == 0)
 		empty++;
@@ -210,6 +228,8 @@ int StudentAI::count_piece(int &empty, int &same, int turn, int i, int j){
 // @usage: evaluate all four directions for the space
 // need to go through all eight directions, stop when seeing another color's piece
 int StudentAI::evaluate_single_space(int i, int j, int turn){
+	if(my_board.board[i][j] != 0) return 0;
+
 	// evaluation score for the single space
 	int sum = 0; 	
 	// empty spots and pieces with same color
@@ -261,15 +281,23 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 			break;
 	}
 	sum += score_dict(empty, same, my_board.k);
+
+	//cout<<"i & j = "<<i<<" "<<j<<" sum = "<<sum<<endl;
 	return sum;
 }
 
 // @return: score for the whole board
 int StudentAI::evaluate_board(int turn){
 	int sum = 0;
-
+	/*
 	for(int i = 0; i < my_board.row; i++){
 		for(int j = 0; j < my_board.col; j++){
+			sum += evaluate_single_space(i, j, turn);
+		}
+	}
+	*/
+	for(int i = min_row; i < max_row; i++){
+		for(int j = min_col; j < max_col; j++){
 			sum += evaluate_single_space(i, j, turn);
 		}
 	}

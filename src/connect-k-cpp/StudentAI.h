@@ -3,6 +3,7 @@
 #include "AI.h"
 #include <math.h> 
 #include <unordered_map>
+#include <algorithm>
 #pragma once
 
 //The following part should be completed by students.
@@ -41,7 +42,7 @@ public:
 
 	// @return true for break, false for continue
 	// helper function for evaluate_single_space
-	int count_piece(int &empty, int &same, int turn, int i, int j);
+	bool count_piece(int &empty, int &same, int turn, int i, int j);
 
 	// @return evaluation score for the empty spot valid[i][j]
 	// @usage: evaluate all eight directions for the space
