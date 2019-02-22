@@ -4,6 +4,7 @@
 #include <math.h> 
 #include <unordered_map>
 #include <algorithm>
+#include <bits/stdc++.h> 
 #pragma once
 
 //The following part should be completed by students.
