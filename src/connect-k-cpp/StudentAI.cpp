@@ -91,9 +91,9 @@ Move StudentAI::GetMove(Move board)
 	m.col = usable[i].second;
 
 	// debug
-	cout<<"the list of usable in get_move:"<<endl;
-	for(int i = 0; i < usable.size(); i++)
-		cout<<"i = "<<i<<" usable is "<<usable[i].first<<" "<<usable[i].second<<endl;
+	cout<<"the list of valid in get_move:"<<endl;
+	for(int i = 0; i < valid.size(); i++)
+		cout<<"i = "<<i<<" valid is "<<valid[i].first<<" "<<valid[i].second<<endl;
 
 
 	my_board.board[usable[i].first][usable[i].second] = 1;
@@ -318,7 +318,7 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 	}
 	sum += score_dict(empty, same, my_board.k);
 
-	//cout<<"i & j = "<<i<<" "<<j<<" sum = "<<sum<<endl;
+	cout<<"i & j = "<<i<<" "<<j<<" sum = "<<sum<<endl;
 	return sum;
 }
 
