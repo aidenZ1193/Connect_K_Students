@@ -253,7 +253,8 @@ void StudentAI::find_empty(vector<pair<int, int> > &valid){
 bool StudentAI::count_piece(int &empty, int &same, int turn, int i, int j){
 	//bool res = false;
 	if(my_board.board[i][j] == 0)
-		empty++;
+		if(empty == 0) empty++;
+		else return true;
 	else if(my_board.board[i][j] == turn)
 		same++;
 	else return true;
