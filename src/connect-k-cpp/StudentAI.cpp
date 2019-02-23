@@ -270,7 +270,7 @@ bool StudentAI::count_piece(int &empty, int &same, int turn, int i, int j){
 // @usage: evaluate all four directions for the space
 // need to go through all eight directions, stop when seeing another color's piece
 int StudentAI::evaluate_single_space(int i, int j, int turn){
-	if(my_board.board[i][j] != 0) return 0;
+	//if(my_board.board[i][j] != 0) return 0;
 
 	// evaluation score for the single space
 	int sum = 0; 	
