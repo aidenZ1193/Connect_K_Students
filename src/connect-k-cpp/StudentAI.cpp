@@ -29,16 +29,13 @@ void StudentAI::update_min_max_row(Move m){
 // this function works as the first round's max
 Move StudentAI::GetMove(Move board)
 {
-	/*
-	if (this->g == 0)
-		return Move(rand() % (col - 1), rand() % (row - 1));
-	else
-		return Move(rand() % (col - 1), 0);
-	*/
+	
 	Move m;
+	
 	// 1. eveluate board, put move in board
 	if(board.col == -1 && board.row == -1){
 		// start first: return the spot in the middle
+		update_min_max_row(board);
 		my_board.board[my_board.row/2][my_board.col/2] = 1;
 		m.row = my_board.row/2;
 		m.col = my_board.col/2;
@@ -51,8 +48,10 @@ Move StudentAI::GetMove(Move board)
 	else{
 		// gravity mode is on, put the move to the bottom of board
 		for(int i = my_board.row-1; i >= 0; i--){
-			if(my_board.board[i][board.col] == 0)
+			if(my_board.board[i][board.col] == 0){
+				update_min_max_row(Move(i, board.col));
 				my_board.board[i][board.col] = 2;
+			}
 		}
 	}
 
