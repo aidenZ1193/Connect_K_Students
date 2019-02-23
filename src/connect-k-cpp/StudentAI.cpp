@@ -84,16 +84,15 @@ Move StudentAI::GetMove(Move board)
 	}
 	int i = 0;
 	if(usable.size() > 1){
-		int i = (int)(rand ()% usable.size());
-	}else
-		i = 0;
+		i = (int)(rand ()% usable.size());
+	}
 	m.row = usable[i].first;
 	m.col = usable[i].second;
 
 	// debug
 	cout<<"the list of valid in get_move:"<<endl;
-	for(int i = 0; i < valid.size(); i++)
-		cout<<"i = "<<i<<" valid is "<<valid[i].first<<" "<<valid[i].second<<endl;
+	for(int i = 0; i < usable.size(); i++)
+		cout<<"i = "<<i<<" usable is "<<usable[i].first<<" "<<usable[i].usable<<endl;
 
 
 	my_board.board[m.row][m.col] = 1;
