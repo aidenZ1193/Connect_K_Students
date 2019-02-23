@@ -217,6 +217,7 @@ bool StudentAI::non_empty_neighbor(int i, int j){
 void StudentAI::find_empty(vector<pair<int, int> > &valid){
 	// disable gravity
 	cout<<"min_row is "<<min_row<<" and min_col is "<<min_col<<endl;
+	cout<<"max_row is "<<max_row<<" and max_col is "<<max_col<<endl;
 	if(my_board.g == 0){
 		for(int i = min_row; i < max_row; i++){
 			for(int j = min_col; j < max_col; j++ ){
