@@ -185,14 +185,38 @@ int StudentAI::score_dict(int empty, int pieces, int k){
 	return 0;
 }
 
+// check for non-empty neighbors, return false if all empty
+bool non_empty_neighbor(int i, int j){
+	if(i > 0){
+		if(my_board.board[i-1][j] != 0) return true;
+		if(j > 0){
+			if(my_board.board[i-1][j-1] != 0) return true;
+			if(my_board.board[i][j-1] != 0) return true;
+		}
+		if(j < my_board.col){
+			 if(my_board.board[i-1][j+1] != 0) return true;
+			 if(my_board.board[i][j+1] != 0) return true;
+		}
+	}else if(i < my_board.row){
+		if(my_board.board[i+1][j] != 0) return true;
+		if(j > 0 && my_board.board[i+1][j-1] != 0) return true;
+		if(j < my_board.col && my_board.board[i+1][j+1] != 0) return true;
+	}
+	return false;
+}
+
 // @usage: find all valid moves in the board (within constrains)
 void StudentAI::find_empty(vector<pair<int, int> > &valid){
 	// disable gravity
 	if(my_board.g == 0){
 		for(int i = min_row; i < max_row; i++){
 			for(int j = min_col; j < max_col; j++ ){
-				if(my_board.board[i][j] == 0) 
-					valid.push_back(make_pair(i, j));
+				if(my_board.board[i][j] == 0) {
+					// optimize: omly count the ones next to non-empty spot
+					// horizontal
+					if(non_empty_neighbor(i, j))
+						valid.push_back(make_pair(i, j));
+				}
 			}
 		}
 	}else{
