@@ -55,6 +55,9 @@ public:
 	// @usage: find all valid moves in the board (within constrains)
 	void find_empty(vector<pair<int, int> > &valid);
 
+	// return if a spot is arounded with any non-empty neighbors. True if it does
+	bool non_empty_neighbor(int i, int j);
+
 
 
 };

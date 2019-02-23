@@ -186,7 +186,7 @@ int StudentAI::score_dict(int empty, int pieces, int k){
 }
 
 // check for non-empty neighbors, return false if all empty
-bool non_empty_neighbor(int i, int j){
+bool StudentAI::non_empty_neighbor(int i, int j){
 	if(i > 0){
 		if(my_board.board[i-1][j] != 0) return true;
 		if(j > 0){
