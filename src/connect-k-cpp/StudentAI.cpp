@@ -49,7 +49,7 @@ Move StudentAI::GetMove(Move board)
 		// gravity mode is on, put the move to the bottom of board
 		for(int i = my_board.row-1; i >= 0; i--){
 			if(my_board.board[i][board.col] == 0){
-				update_min_max_row(Move(i, board.col));
+				update_min_max_row(Move(i,board.col));
 				my_board.board[i][board.col] = 2;
 			}
 		}
@@ -106,7 +106,7 @@ Move StudentAI::GetMove(Move board)
 // @return: board's evalutation score
 // @usage: emulate component's move and the following moves
 int StudentAI::min_move(pair<int, int> &spot, int depth){
-	int score = evaluate_board(1);
+	int score = evaluate_board(2);
 	int win = my_board.IsWin();
 	if(win != 0 || depth == 0){
 		cout<<"spot "<<spot.first<<" "<<spot.second<<"score from min: "<<score<<endl;
@@ -140,7 +140,7 @@ int StudentAI::min_move(pair<int, int> &spot, int depth){
 int StudentAI::max_move(pair<int, int> &spot, int depth){
 
 	// check for end game
-	int score = evaluate_board(2);	// i = AI's turn
+	int score = evaluate_board(1);	// i = AI's turn
 	int win = my_board.IsWin();
 	// tie/someone wins/reached max depth
 	if(win != 0 || depth == 0){
@@ -215,8 +215,8 @@ bool StudentAI::non_empty_neighbor(int i, int j){
 // @usage: find all valid moves in the board (within constrains)
 void StudentAI::find_empty(vector<pair<int, int> > &valid){
 	// disable gravity
-	cout<<"min_row is "<<min_row<<" and min_col is "<<min_col<<endl;
-	cout<<"max_row is "<<max_row<<" and max_col is "<<max_col<<endl;
+	//cout<<"min_row is "<<min_row<<" and min_col is "<<min_col<<endl;
+	//cout<<"max_row is "<<max_row<<" and max_col is "<<max_col<<endl;
 	if(my_board.g == 0){
 		for(int i = min_row; i < max_row; i++){
 			for(int j = min_col; j < max_col; j++ ){
