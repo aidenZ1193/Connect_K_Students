@@ -108,7 +108,8 @@ Move StudentAI::GetMove(Move board)
 // @return: board's evalutation score
 // @usage: emulate component's move and the following moves
 int StudentAI::min_move(pair<int, int> &spot, int depth){
-	int score = evaluate_board(1);
+	//int score = evaluate_board(1);
+	int score = evaluate_single_space(spot.first, spot.second, turn)
 	int win = my_board.IsWin();
 	if(win != 0 || depth == 0){
 		//cout<<"spot "<<spot.first<<" "<<spot.second<<"score from min: "<<score<<endl;
@@ -350,10 +351,10 @@ int StudentAI::evaluate_board(int turn){
 		}
 	}
 	*/
-	//for(int i = min_row; i < max_row; i++){
-	//	for(int j = min_col; j < max_col; j++){
+	for(int i = min_row; i < max_row; i++){
+		for(int j = min_col; j < max_col; j++){
 			sum += evaluate_single_space(i, j, turn);
-	//	}
-	//}
+		}
+	}
 	return sum;
 }
