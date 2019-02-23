@@ -193,18 +193,18 @@ bool StudentAI::non_empty_neighbor(int i, int j){
 			if(my_board.board[i-1][j-1] != 0) return true;
 			if(my_board.board[i][j-1] != 0) return true;
 		}
-		if(j < my_board.col){
+		if(j < my_board.col-1){
 			 if(my_board.board[i-1][j+1] != 0) return true;
 			 if(my_board.board[i][j+1] != 0) return true;
 		}
 	}
-	if(i < my_board.row){
+	if(i < my_board.row-1){
 		if(my_board.board[i+1][j] != 0) return true;
 		if(j > 0){
 			if(my_board.board[i+1][j-1] != 0) return true;
 			if(my_board.board[i][j-1] != 0) return true;
 		}
-		if(j < my_board.col){
+		if(j < my_board.col-1){
 			if(my_board.board[i+1][j+1] != 0) return true;
 			if(my_board.board[i][j+1] != 0) return true;
 		}
@@ -216,6 +216,7 @@ bool StudentAI::non_empty_neighbor(int i, int j){
 // @usage: find all valid moves in the board (within constrains)
 void StudentAI::find_empty(vector<pair<int, int> > &valid){
 	// disable gravity
+	cout<<"min_row is "<<min_row<<" and min_col is "<<min_col<<endl;
 	if(my_board.g == 0){
 		for(int i = min_row; i < max_row; i++){
 			for(int j = min_col; j < max_col; j++ ){
@@ -233,7 +234,8 @@ void StudentAI::find_empty(vector<pair<int, int> > &valid){
 			for(int j = my_board.row - 1; j >= 0; j--){
 				if(my_board.board[j][i] == 0){
 					// pick only lowest one in each row
-					valid.push_back(make_pair(j, i));
+					if(non_empty_neighbor(j, i))
+						valid.push_back(make_pair(j, i));
 					break;
 				}
 			}
