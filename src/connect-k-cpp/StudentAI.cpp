@@ -64,7 +64,7 @@ Move StudentAI::GetMove(Move board)
 	find_empty(valid);
 	int len = valid.size();
 	int max_score = INT_MIN;
-	int depth = 1;	// max - min - max- min - max
+	int depth = 2;	// max - min - max- min - max
 	for(int i = 0; i < len; i++){
 		// change color in the spot to 1, which is the AI's move
 		my_board.board[valid[i].first][valid[i].second] = 1;
