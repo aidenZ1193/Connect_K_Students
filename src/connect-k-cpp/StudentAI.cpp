@@ -197,10 +197,17 @@ bool StudentAI::non_empty_neighbor(int i, int j){
 			 if(my_board.board[i-1][j+1] != 0) return true;
 			 if(my_board.board[i][j+1] != 0) return true;
 		}
-	}else if(i < my_board.row){
+	}
+	if(i < my_board.row){
 		if(my_board.board[i+1][j] != 0) return true;
-		if(j > 0 && my_board.board[i+1][j-1] != 0) return true;
-		if(j < my_board.col && my_board.board[i+1][j+1] != 0) return true;
+		if(j > 0){
+			if(my_board.board[i+1][j-1] != 0) return true;
+			if(my_board.board[i][j-1] != 0) return true;
+		if(j < my_board.col){
+			if(my_board.board[i+1][j+1] != 0) return true;
+			if(my_board.board[i][j+1] != 0) return true;
+		}
+
 	}
 	return false;
 }
