@@ -96,7 +96,7 @@ Move StudentAI::GetMove(Move board)
 		cout<<"i = "<<i<<" valid is "<<valid[i].first<<" "<<valid[i].second<<endl;
 
 
-	my_board.board[usable[i].first][usable[i].second] = 1;
+	my_board.board[m.row][m.col] = 1;
 	//my_board.ShowBoard();
 	update_min_max_row(m);
 	
@@ -318,6 +318,10 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 			break;
 	}
 	sum += score_dict(empty, same, my_board.k);
+
+	// if the spot is on the wall, lower the sum level by 10
+	if(i == 0 || j == 0 || i == my_board.row-1 || j == my_board.col-1)
+		sum = sum/10;
 
 	//cout<<"i & j = "<<i<<" "<<j<<" sum = "<<sum<<endl;
 	return sum;
