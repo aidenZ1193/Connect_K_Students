@@ -180,8 +180,8 @@ int StudentAI::max_move(pair<int, int> &spot, int depth){
 int StudentAI::score_dict(int empty, int pieces, int k){
 	if(pieces >= k) return pow(10, k);
 	k--;
-	while(k > 1){
-		if(pieces == 0){
+	while(k > 0){
+		if(pieces == k){
 			if(empty >= 2) return pow(10, k);
 			else if(empty == 1) return pow(10, k-1);
 		} 
