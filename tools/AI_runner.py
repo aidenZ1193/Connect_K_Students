@@ -19,4 +19,7 @@ if __name__ == '__main__':
     ai_2 = ai_2 + " " + str(col) + " " + str(row) + " " + str(k) + " " + str(g) + " t"
     col = int(col);row=int(row);k=int(k);g=int(g)
     win_player = game_main_loop(col,row,k,g,ai_1,ai_2,True)
-    print("player",win_player,"wins")
+    if win_player == -1:
+        print("Tie")
+    else:
+        print("player",win_player,"wins")

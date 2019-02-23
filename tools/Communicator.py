@@ -18,12 +18,16 @@ class Communicator(object):
     def recv(self,t=0.2):
         r = ''
         pr = self.process.stdout
+        per = self.process.stderr
         bt = time.time()
+        er = b''
         while (time.time() - bt < self.timeout):
             if not select.select([pr], [], [], 0)[0]:
                 time.sleep(t)
                 continue
-            r = pr.read().rstrip()
 
-            return r
+            r = pr.read().rstrip()
+            if r.decode() == ' ' or r.decode() == '':
+                er = per.read()
+            return r,er
         raise TimeoutError

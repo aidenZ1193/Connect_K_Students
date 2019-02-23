@@ -21,6 +21,7 @@ def game_main_loop(col,row,k,g,ai_1,ai_2,debug=False):
     board = Board(col,row,k,g)
     AI_com_list = [Communicator(ai_1,1000),Communicator(ai_2,1000)]
     player = 1
+    win_flag = 0
     try:
         AI_com_list[player-1].send("-1 -1".encode())
     except BrokenPipeError:
@@ -29,7 +30,7 @@ def game_main_loop(col,row,k,g,ai_1,ai_2,debug=False):
 
     while True:
         try:
-            ai_move = AI_com_list[player-1].recv()
+            ai_move,std_error = AI_com_list[player-1].recv()
         except TimeoutError:
             player = player_switch(player)
             if (debug):
@@ -48,13 +49,16 @@ def game_main_loop(col,row,k,g,ai_1,ai_2,debug=False):
             break
         except Exception as msg:
             if (debug):
-                print("Unknown Error!")
+                print("Unknown Error with the stderr:")
+                print(std_error.decode())
+                print("Shell raised the following exception:")
                 print(msg)
             player = player_switch(player)
             break
         if (debug):
             board.show_board()
-        if (board.is_win()):
+        win_flag = board.is_win()
+        if (win_flag != 0):
             break
 
         player = player_switch(player)
@@ -66,4 +70,7 @@ def game_main_loop(col,row,k,g,ai_1,ai_2,debug=False):
             player = player_switch(player)
             break
 
-    return player
+    if win_flag != 0:
+        return win_flag
+    else:
+        return player
