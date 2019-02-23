@@ -84,7 +84,7 @@ Move StudentAI::GetMove(Move board)
 	}
 	int i = 0;
 	if(usable.size() > 1){
-		i = (int)(rand ()% usable.size());
+		i = (int)(rand()% usable.size());
 	}
 	m.row = usable[i].first;
 	m.col = usable[i].second;
