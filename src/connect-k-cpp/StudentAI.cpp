@@ -108,7 +108,7 @@ Move StudentAI::GetMove(Move board)
 // @return: board's evalutation score
 // @usage: emulate component's move and the following moves
 int StudentAI::min_move(pair<int, int> &spot, int depth){
-	int score = evaluate_board(2);
+	int score = evaluate_board(1);
 	int win = my_board.IsWin();
 	if(win != 0 || depth == 0){
 		//cout<<"spot "<<spot.first<<" "<<spot.second<<"score from min: "<<score<<endl;
@@ -144,7 +144,7 @@ int StudentAI::min_move(pair<int, int> &spot, int depth){
 int StudentAI::max_move(pair<int, int> &spot, int depth){
 
 	// check for end game
-	int score = evaluate_board(1);	// i = AI's turn
+	int score = evaluate_board(2);	// i = AI's turn
 	int win = my_board.IsWin();
 	// tie/someone wins/reached max depth
 	if(win != 0 || depth == 0){
