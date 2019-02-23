@@ -257,10 +257,10 @@ void StudentAI::find_empty(vector<pair<int, int> > &valid){
 // helper function for evaluate_single_space
 bool StudentAI::count_piece(int &empty, int &same, int turn, int i, int j){
 	//bool res = false;
-	if(my_board.board[i][j] == 0)
+	if(my_board.board[i][j] == 0){
 		empty++;
 		return true;
-	else if(my_board.board[i][j] == turn)
+	}else if(my_board.board[i][j] == turn)
 		same++;
 	else return true;
 	return false;
