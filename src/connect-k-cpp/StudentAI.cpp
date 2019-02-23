@@ -84,6 +84,7 @@ Move StudentAI::GetMove(Move board)
 	}
 	int i = 0;
 	if(usable.size() > 1){
+		srand(time(0));
 		i = rand()% usable.size();
 	}
 	m.row = usable[i].first;
