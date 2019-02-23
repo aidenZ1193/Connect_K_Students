@@ -63,7 +63,9 @@ Move StudentAI::GetMove(Move board)
 	find_empty(valid);
 	int len = valid.size();
 	int max_score = INT_MIN;
-	int depth = 2;	// max - min - max- min - max
+	int depth = 1;	// max - min - max- min - max
+
+	cout<<"Before entering first round of min: "<<endl;
 	for(int i = 0; i < len; i++){
 		// change color in the spot to 1, which is the AI's move
 		my_board.board[valid[i].first][valid[i].second] = 1;
@@ -117,6 +119,8 @@ int StudentAI::min_move(pair<int, int> &spot, int depth){
 	vector<pair<int, int> > usable;
 	find_empty(valid);
 
+	cout<<"Before entering first round of max: "<<endl;
+
 	int len = valid.size();
 	int min_score = INT_MAX;
 	for(int i = 0; i < len; i++){
@@ -150,6 +154,8 @@ int StudentAI::max_move(pair<int, int> &spot, int depth){
 	vector<pair<int, int> > valid;
 	vector<pair<int, int> > usable;
 	find_empty(valid);
+
+	cout<<"Before entering second round of min: "<<endl;
 
 	int len = valid.size();
 	int max_score = INT_MIN;
@@ -324,7 +330,7 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 	if(i == my_board.row-1) sum = sum/10;
 	if(j == my_board.col-1) sum = sum/10;
 
-	//cout<<"i & j = "<<i<<" "<<j<<" sum = "<<sum<<endl;
+	cout<<"i & j = "<<i<<" "<<j<<" sum = "<<sum<<endl;
 	return sum;
 }
 
