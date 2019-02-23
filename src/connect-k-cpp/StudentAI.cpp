@@ -110,7 +110,7 @@ int StudentAI::min_move(pair<int, int> &spot, int depth){
 	int score = evaluate_board(2);
 	int win = my_board.IsWin();
 	if(win != 0 || depth == 0){
-		//cout<<"spot "<<spot.first<<" "<<spot.second<<"score from min: "<<score<<endl;
+		cout<<"spot "<<spot.first<<" "<<spot.second<<"score from min: "<<score<<endl;
 		return score;
 	}
 
@@ -318,7 +318,7 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 	}
 	sum += score_dict(empty, same, my_board.k);
 
-	cout<<"i & j = "<<i<<" "<<j<<" sum = "<<sum<<endl;
+	//cout<<"i & j = "<<i<<" "<<j<<" sum = "<<sum<<endl;
 	return sum;
 }
 
