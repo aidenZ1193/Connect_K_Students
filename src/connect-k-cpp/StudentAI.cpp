@@ -203,6 +203,7 @@ bool StudentAI::non_empty_neighbor(int i, int j){
 		if(j > 0){
 			if(my_board.board[i+1][j-1] != 0) return true;
 			if(my_board.board[i][j-1] != 0) return true;
+		}
 		if(j < my_board.col){
 			if(my_board.board[i+1][j+1] != 0) return true;
 			if(my_board.board[i][j+1] != 0) return true;
