@@ -329,13 +329,13 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 	sum += score_dict(empty, same, my_board.k);
 	cout<<"4. "<<"sum = "<<sum<<" empty = "<<empty<<" pieces = "<<same<<endl;
 
-	/*
+	
 	// if the spot is on the wall, lower the sum level by 10
 	if(i == 0) sum = sum/10;
 	if(j == 0) sum = sum/10;
 	if(i == my_board.row-1) sum = sum/10;
 	if(j == my_board.col-1) sum = sum/10;
-	*/
+	
 
 	cout<<"i & j = "<<i<<" "<<j<<" sum = "<<sum<<endl;
 	return sum;
