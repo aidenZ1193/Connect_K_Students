@@ -65,7 +65,7 @@ Move StudentAI::GetMove(Move board)
 	find_empty(valid);
 	int len = valid.size();
 	int max_score = INT_MIN;
-	int depth = 2;	// max - min - max- min - max
+	int depth = 3;	// max - min - max- min - max
 
 	// for alpha-beta pruning
 	int alpha = INT_MIN, beta = INT_MAX;
