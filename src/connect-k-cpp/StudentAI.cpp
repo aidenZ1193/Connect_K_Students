@@ -304,7 +304,7 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 	}
 	sum += score_dict(empty, same, my_board.k);
 	
-	/cout<<"1. "<<"sum = "<<sum<<" empty = "<<empty<<" pieces = "<<same<<endl;
+	cout<<"1. "<<"sum = "<<sum<<" empty = "<<empty<<" pieces = "<<same<<endl;
 	empty = same = 0;
 
 	// 2. vertical, up and down
