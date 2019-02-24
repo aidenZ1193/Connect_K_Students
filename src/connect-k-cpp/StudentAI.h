@@ -59,6 +59,8 @@ public:
 	// return if a spot is arounded with any non-empty neighbors. True if it does
 	bool non_empty_neighbor(int i, int j);
 
+	int evaluate_both(int i, int j);
+
 
 
 };

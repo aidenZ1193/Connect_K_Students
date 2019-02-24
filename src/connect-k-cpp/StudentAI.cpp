@@ -109,7 +109,8 @@ Move StudentAI::GetMove(Move board)
 // @usage: emulate component's move and the following moves
 int StudentAI::min_move(pair<int, int> &spot, int depth){
 	//int score = evaluate_board(1);
-	int score = evaluate_single_space(spot.first, spot.second, 1);
+	//int score = evaluate_single_space(spot.first, spot.second, 1);
+	int score = evaluate_both(spot.first, spot.second);
 	int win = my_board.IsWin();
 	if(win != 0 || depth == 0){
 		//cout<<"spot "<<spot.first<<" "<<spot.second<<"score from min: "<<score<<endl;
@@ -145,7 +146,8 @@ int StudentAI::min_move(pair<int, int> &spot, int depth){
 int StudentAI::max_move(pair<int, int> &spot, int depth){
 
 	// check for end game
-	int score = evaluate_board(2);	// i = AI's turn
+	//int score = evaluate_board(2);	// i = AI's turn
+	int score = evaluate_both(spot.first, spot.second);
 	int win = my_board.IsWin();
 	// tie/someone wins/reached max depth
 	if(win != 0 || depth == 0){
@@ -271,7 +273,6 @@ bool StudentAI::count_piece(int &empty, int &same, int turn, int i, int j){
 // @usage: evaluate all four directions for the space
 // need to go through all eight directions, stop when seeing another color's piece
 int StudentAI::evaluate_single_space(int i, int j, int turn){
-	//if(my_board.board[i][j] != 0) return 0;
 
 	// evaluation score for the single space
 	int sum = 0; 	
@@ -288,7 +289,8 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 			break;
 	}
 	sum += score_dict(empty, same, my_board.k);
-	cout<<"1. "<<"sum = "<<sum<<" empty = "<<empty<<" pieces = "<<same<<endl;
+	
+	//cout<<"1. "<<"sum = "<<sum<<" empty = "<<empty<<" pieces = "<<same<<endl;
 	empty = same = 0;
 
 	// 2. vertical, up and down
@@ -301,7 +303,7 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 			break;
 	}
 	sum += score_dict(empty, same, my_board.k);
-	cout<<"2. "<<"sum = "<<sum<<" empty = "<<empty<<" pieces = "<<same<<endl;
+	//cout<<"2. "<<"sum = "<<sum<<" empty = "<<empty<<" pieces = "<<same<<endl;
 	empty = same = 0;
 
 	// 3. 45 degree left to right, bottom to top
@@ -314,7 +316,7 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 			break;
 	}
 	sum += score_dict(empty, same, my_board.k);
-	cout<<"3. "<<"sum = "<<sum<<" empty = "<<empty<<" pieces = "<<same<<endl;
+	//cout<<"3. "<<"sum = "<<sum<<" empty = "<<empty<<" pieces = "<<same<<endl;
 	empty = same = 0;
 
 	// 4. 135 degree left to right, top to bottom
@@ -344,17 +346,21 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 // @return: score for the whole board
 int StudentAI::evaluate_board(int turn){
 	int sum = 0;
-	/*
-	for(int i = 0; i < my_board.row; i++){
-		for(int j = 0; j < my_board.col; j++){
-			sum += evaluate_single_space(i, j, turn);
-		}
-	}
-	*/
+
 	for(int i = min_row; i < max_row; i++){
 		for(int j = min_col; j < max_col; j++){
 			sum += evaluate_single_space(i, j, turn);
 		}
 	}
 	return sum;
+}
+
+// @return: score of ai - opponent
+int StudentAI::evaluate_both(int i, int j){
+	int ai = 0;
+	int opponent = 0;
+	ai = evaluate_single_space(i, j, 1);
+	opponent = evaluate_single_space(i, j, 2);
+	return ai - opponent;
+
 }
