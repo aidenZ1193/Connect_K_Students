@@ -65,7 +65,7 @@ Move StudentAI::GetMove(Move board)
 	int max_score = INT_MIN;
 	int depth = 3;	// max - min - max- min - max
 
-	cout<<"Before entering first round of min: "<<endl;
+	//cout<<"Before entering first round of min: "<<endl;
 	for(int i = 0; i < len; i++){
 		// change color in the spot to 1, which is the AI's move
 		my_board.board[valid[i].first][valid[i].second] = 1;
@@ -92,9 +92,9 @@ Move StudentAI::GetMove(Move board)
 	m.col = usable[i].second;
 
 	// debug
-	cout<<"the list of usable in get_move:"<<endl;
-	for(int i = 0; i < usable.size(); i++)
-		cout<<"i = "<<i<<" usable is "<<usable[i].first<<" "<<usable[i].second<<endl;
+	//cout<<"the list of usable in get_move:"<<endl;
+	//for(int i = 0; i < usable.size(); i++)
+	//	cout<<"i = "<<i<<" usable is "<<usable[i].first<<" "<<usable[i].second<<endl;
 
 
 	my_board.board[m.row][m.col] = 1;
@@ -121,7 +121,7 @@ int StudentAI::min_move(pair<int, int> &spot, int depth){
 	vector<pair<int, int> > usable;
 	find_empty(valid);
 
-	cout<<"Before entering first round of max: "<<endl;
+	//cout<<"Before entering first round of max: "<<endl;
 
 	int len = valid.size();
 	int min_score = INT_MAX;
@@ -158,7 +158,7 @@ int StudentAI::max_move(pair<int, int> &spot, int depth){
 	vector<pair<int, int> > usable;
 	find_empty(valid);
 
-	cout<<"Before entering second round of min: "<<endl;
+	//cout<<"Before entering second round of min: "<<endl;
 
 	int len = valid.size();
 	int max_score = INT_MIN;
@@ -290,7 +290,7 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 	}
 	sum += score_dict(empty, same, my_board.k);
 	
-	cout<<"1. "<<"sum = "<<sum<<" empty = "<<empty<<" pieces = "<<same<<endl;
+	//cout<<"1. "<<"sum = "<<sum<<" empty = "<<empty<<" pieces = "<<same<<endl;
 	empty = same = 0;
 
 	// 2. vertical, up and down
@@ -303,7 +303,7 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 			break;
 	}
 	sum += score_dict(empty, same, my_board.k);
-	cout<<"2. "<<"sum = "<<sum<<" empty = "<<empty<<" pieces = "<<same<<endl;
+	//cout<<"2. "<<"sum = "<<sum<<" empty = "<<empty<<" pieces = "<<same<<endl;
 	empty = same = 0;
 
 	// 3. 45 degree left to right, bottom to top
@@ -316,7 +316,7 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 			break;
 	}
 	sum += score_dict(empty, same, my_board.k);
-	cout<<"3. "<<"sum = "<<sum<<" empty = "<<empty<<" pieces = "<<same<<endl;
+	//cout<<"3. "<<"sum = "<<sum<<" empty = "<<empty<<" pieces = "<<same<<endl;
 	empty = same = 0;
 
 	// 4. 135 degree left to right, top to bottom
@@ -329,7 +329,7 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 			break;
 	}
 	sum += score_dict(empty, same, my_board.k);
-	cout<<"4. "<<"sum = "<<sum<<" empty = "<<empty<<" pieces = "<<same<<endl;
+	//cout<<"4. "<<"sum = "<<sum<<" empty = "<<empty<<" pieces = "<<same<<endl;
 
 	
 	// if the spot is on the wall, lower the sum level by 10
@@ -339,7 +339,7 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 	if(j == my_board.col-1) sum = sum/10;
 	
 
-	cout<<"i & j = "<<i<<" "<<j<<" sum = "<<sum<<endl;
+	//cout<<"i & j = "<<i<<" "<<j<<" sum = "<<sum<<endl;
 	return sum;
 }
 
