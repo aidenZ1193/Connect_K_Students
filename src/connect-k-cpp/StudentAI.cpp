@@ -300,7 +300,7 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 		if(count_piece(empty, same, turn, i, y))
 			break;
 	}
-	for(int y = j-1; y > min_col; y--){
+	for(int y = j-1; y >= min_col; y--){
 		if(count_piece(empty, same, turn, i, y))
 			break;
 	}
@@ -314,7 +314,7 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 		if(count_piece(empty, same, turn, x, j))
 			break;
 	}
-	for(int x = i-1; x > min_row; x--){
+	for(int x = i-1; x >= min_row; x--){
 		if(count_piece(empty, same, turn, x, j))
 			break;
 	}
@@ -323,11 +323,11 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 	empty = same = 0;
 
 	// 3. 45 degree left to right, bottom to top
-	for(int x = i-1, y = j+1; x > min_row && y < max_col; x--, y++){
+	for(int x = i-1, y = j+1; x >= min_row && y < max_col; x--, y++){
 		if(count_piece(empty, same, turn, x, y))
 			break;
 	}
-	for(int x = i+1, y = j-1; x < max_row && y > min_col; x++, y--){
+	for(int x = i+1, y = j-1; x < max_row && y >= min_col; x++, y--){
 		if(count_piece(empty, same, turn, x, y))
 			break;
 	}
@@ -336,7 +336,7 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 	empty = same = 0;
 
 	// 4. 135 degree left to right, top to bottom
-	for(int x = i-1, y = j-1; x > min_row && y > min_col; x--, y--){
+	for(int x = i-1, y = j-1; x >= min_row && y >= min_col; x--, y--){
 		if(count_piece(empty, same, turn, x, y))
 			break;
 	}
