@@ -65,7 +65,7 @@ Move StudentAI::GetMove(Move board)
 	find_empty(valid);
 	int len = valid.size();
 	int max_score = INT_MIN;
-	int depth = 3;	// max - min - max- min - max
+	int depth = 1;	// max - min - max- min - max
 
 	// for alpha-beta pruning
 	int alpha = INT_MIN, beta = INT_MAX;
@@ -380,7 +380,7 @@ int StudentAI::evaluate_both(int i, int j){
 	//ai = evaluate_board(1);
 	//opponent = evaluate_board(2);
 
-	//cout<<"i = "<<i<<", j = "<<j<<" ai score = "<<ai<<" opponent score = "<<opponent<<endl;
+	cout<<"i = "<<i<<", j = "<<j<<" ai score = "<<ai<<" opponent score = "<<opponent<<endl;
 	return ai + opponent;
 	// before furture adjusting: this version beats poorAI in no gravity modes mostly.
 }
