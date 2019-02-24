@@ -319,7 +319,7 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 			break;
 	}
 	sum += score_dict(empty, same, my_board.k);
-	、、cout<<"2. "<<"sum = "<<sum<<" empty = "<<empty<<" pieces = "<<same<<endl;
+	//cout<<"2. "<<"sum = "<<sum<<" empty = "<<empty<<" pieces = "<<same<<endl;
 	empty = same = 0;
 
 	// 3. 45 degree left to right, bottom to top
