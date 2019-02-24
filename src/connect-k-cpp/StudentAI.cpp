@@ -362,5 +362,5 @@ int StudentAI::evaluate_both(int i, int j){
 	ai = evaluate_single_space(i, j, 1);
 	opponent = evaluate_single_space(i, j, 2);
 	return ai - opponent;
-
+	// before furture adjusting: this version beats poorAI in no gravity modes mostly.
 }
