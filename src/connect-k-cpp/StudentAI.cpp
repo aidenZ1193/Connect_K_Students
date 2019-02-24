@@ -375,10 +375,10 @@ int StudentAI::evaluate_board(int turn){
 int StudentAI::evaluate_both(int i, int j){
 	int ai = 0;
 	int opponent = 0;
-	//ai = evaluate_single_space(i, j, 1);
-	//opponent = evaluate_single_space(i, j, 2);
-	ai = evaluate_board(1);
-	opponent = evaluate_board(2);
+	ai = evaluate_single_space(i, j, 1);
+	opponent = evaluate_single_space(i, j, 2);
+	//ai = evaluate_board(1);
+	//opponent = evaluate_board(2);
 
 	//cout<<"i = "<<i<<", j = "<<j<<" ai score = "<<ai<<" opponent score = "<<opponent<<endl;
 	return ai + opponent;
