@@ -172,7 +172,7 @@ int StudentAI::max_move(pair<int, int> &spot, int depth, int alpha, int beta){
 	// from all points in valid[][], perform min-max search with depth
 	for(int i = 0; i < len; i++){
 		my_board.board[valid[i].first][valid[i].second] = 1;
-		int temp = min_move(valid[i], depth);
+		int temp = min_move(valid[i], depth, alpha, beta);
 		if(temp > max_score){
 			usable.clear();
 			usable.push_back(valid[i]);
