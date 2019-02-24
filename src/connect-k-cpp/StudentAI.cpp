@@ -375,6 +375,8 @@ int StudentAI::evaluate_both(int i, int j){
 	int opponent = 0;
 	ai = evaluate_single_space(i, j, 1);
 	opponent = evaluate_single_space(i, j, 2);
+
+	cout<<"i = "<<i<<", j = "<<j<<" ai score = "<<ai<<" opponent score = "<<opponent<<endl;
 	return ai + opponent;
 	// before furture adjusting: this version beats poorAI in no gravity modes mostly.
 }
