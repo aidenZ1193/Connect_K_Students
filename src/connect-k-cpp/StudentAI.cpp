@@ -119,8 +119,6 @@ int StudentAI::min_move(pair<int, int> &spot, int depth, int &alpha, int &beta){
 		//cout<<"spot "<<spot.first<<" "<<spot.second<<"score from min: "<<score<<endl;
 		return score;
 	}
-	if(score < beta) beta = score;
-	if(alpha >= beta) return score;
 
 	vector<pair<int, int> > valid;
 	vector<pair<int, int> > usable;
@@ -141,6 +139,11 @@ int StudentAI::min_move(pair<int, int> &spot, int depth, int &alpha, int &beta){
 			usable.push_back(valid[i]);
 
 		my_board.board[valid[i].first][valid[i].second] = 0;
+
+		if(min_score < beta){
+			beta = min_score;
+			break;
+		}
 	}
 	return min_score;
 }
@@ -158,8 +161,6 @@ int StudentAI::max_move(pair<int, int> &spot, int depth, int &alpha, int &beta){
 	if(win != 0 || depth == 0){
 		return score;
 	}
-	if(score > alpha) alpha = score;
-	if(alpha >= beta) return score;
 
 	vector<pair<int, int> > valid;
 	vector<pair<int, int> > usable;
@@ -179,8 +180,14 @@ int StudentAI::max_move(pair<int, int> &spot, int depth, int &alpha, int &beta){
 			max_score = temp;
 		}else if(temp == max_score)
 			usable.push_back(valid[i]);
-
-		my_board.board[valid[i].first][valid[i].second] = 0;		
+		
+		my_board.board[valid[i].first][valid[i].second] = 0;	
+		
+		if(max_score > alpha){
+			alpha = max_score;
+			break;
+		}
+	
 	}
 	return max_score;
 }
