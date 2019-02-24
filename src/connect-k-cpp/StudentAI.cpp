@@ -43,8 +43,10 @@ Move StudentAI::GetMove(Move board)
 		update_min_max_row(m);
 		return m;
 	}
-	if(my_board.g == 0)
+	if(my_board.g == 0){
+		update_min_max_row(board);
 		my_board.board[board.row][board.col] = 2;
+	}
 	else{
 		// gravity mode is on, put the move to the bottom of board
 		for(int i = my_board.row-1; i >= 0; i--){
