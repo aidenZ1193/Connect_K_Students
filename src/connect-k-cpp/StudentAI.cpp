@@ -65,13 +65,16 @@ Move StudentAI::GetMove(Move board)
 	int max_score = INT_MIN;
 	int depth = 3;	// max - min - max- min - max
 
+	// for alpha-beta pruning
+	int alpha = INT_MIN, beta = INT_MAX;
+
 	//cout<<"Before entering first round of min: "<<endl;
 	for(int i = 0; i < len; i++){
 		// change color in the spot to 1, which is the AI's move
 		my_board.board[valid[i].first][valid[i].second] = 1;
 
 		// perform min-max in here for each possible move
-		int temp = min_move(valid[i], depth-1);
+		int temp = min_move(valid[i], depth-1, alpha, beta);
 		// check the score for valid[i]
 		if(temp > max_score ){
 			usable.clear();
@@ -107,7 +110,7 @@ Move StudentAI::GetMove(Move board)
 
 // @return: board's evalutation score
 // @usage: emulate component's move and the following moves
-int StudentAI::min_move(pair<int, int> &spot, int depth){
+int StudentAI::min_move(pair<int, int> &spot, int depth, int &alpha, int &beta){
 	//int score = evaluate_board(1);
 	//int score = evaluate_single_space(spot.first, spot.second, 1);
 	int score = evaluate_both(spot.first, spot.second);
@@ -116,6 +119,8 @@ int StudentAI::min_move(pair<int, int> &spot, int depth){
 		//cout<<"spot "<<spot.first<<" "<<spot.second<<"score from min: "<<score<<endl;
 		return score;
 	}
+	if(score < beta) beta = score;
+	if(alpha >= beta) return score;
 
 	vector<pair<int, int> > valid;
 	vector<pair<int, int> > usable;
@@ -127,7 +132,7 @@ int StudentAI::min_move(pair<int, int> &spot, int depth){
 	int min_score = INT_MAX;
 	for(int i = 0; i < len; i++){
 		my_board.board[valid[i].first][valid[i].second] = 2;
-		int temp = max_move(valid[i], depth-1);
+		int temp = max_move(valid[i], depth-1, alpha, beta);
 		if(temp < min_score){
 			usable.clear();
 			usable.push_back(valid[i]);
@@ -143,7 +148,7 @@ int StudentAI::min_move(pair<int, int> &spot, int depth){
 
 // @return: board's evaluation score
 // @usage: emulate AI's move and the following moves
-int StudentAI::max_move(pair<int, int> &spot, int depth){
+int StudentAI::max_move(pair<int, int> &spot, int depth, int alpha, int beta){
 
 	// check for end game
 	//int score = evaluate_board(2);	// i = AI's turn
@@ -153,6 +158,8 @@ int StudentAI::max_move(pair<int, int> &spot, int depth){
 	if(win != 0 || depth == 0){
 		return score;
 	}
+	if(score > alpha) alpha = score;
+	if(alpha >= beta) return score;
 
 	vector<pair<int, int> > valid;
 	vector<pair<int, int> > usable;

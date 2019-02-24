@@ -32,11 +32,11 @@ public:
 
 	// @return: board's evaluation score
 	// @usage: emulate AI's move and the following moves
-	int max_move(pair<int, int> &spot, int depth);
+	int max_move(pair<int, int> &spot, int depth, int alpha, int beta);
 
 	// @return: board's evalutation score
 	// @usage: emulate component's move and the following moves
-	int min_move(pair<int, int> &spot, int depth);
+	int min_move(pair<int, int> &spot, int depth, int alpha, int beta);
 
 	// @return: evaluation score of the line
 	// @usage：based on the line'e empty spots and number of same color pieces
