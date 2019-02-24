@@ -97,9 +97,9 @@ Move StudentAI::GetMove(Move board)
 	m.col = usable[i].second;
 
 	// debug
-	//cout<<"the list of usable in get_move:"<<endl;
-	//for(int i = 0; i < usable.size(); i++)
-	//	cout<<"i = "<<i<<" usable is "<<usable[i].first<<" "<<usable[i].second<<endl;
+	cout<<"the list of usable in get_move:"<<endl;
+	for(int i = 0; i < usable.size(); i++)
+		cout<<"i = "<<i<<" usable is "<<usable[i].first<<" "<<usable[i].second<<endl;
 
 
 	my_board.board[m.row][m.col] = 1;
