@@ -361,6 +361,6 @@ int StudentAI::evaluate_both(int i, int j){
 	int opponent = 0;
 	ai = evaluate_single_space(i, j, 1);
 	opponent = evaluate_single_space(i, j, 2);
-	return abs(ai - opponent);
+	return ai - opponent;
 
 }
