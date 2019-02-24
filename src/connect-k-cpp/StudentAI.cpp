@@ -185,8 +185,8 @@ int StudentAI::score_dict(int empty, int pieces, int k){
 	k--;
 	while(k > 0){
 		if(pieces == k){
-			if(empty >= 2) return pow(10, k);
-			else if(empty == 1) return pow(10, k-1);
+			if(empty >= 1) return pow(10, k);	// was empty >= 2
+			else if(empty == 0) return pow(10, k-1);
 		} 
 		k--;
 	}
