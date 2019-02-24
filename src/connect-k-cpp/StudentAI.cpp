@@ -294,7 +294,7 @@ int StudentAI::evaluate_single_space(int i, int j, int turn){
 	empty = same = 0;
 
 	// 2. vertical, up and down
-	for(int x = i; x < max_row; ++x)
+	for(int x = i; x < max_row; ++x){
 		if(count_piece(empty, same, turn, x, j))
 			break;
 	}
