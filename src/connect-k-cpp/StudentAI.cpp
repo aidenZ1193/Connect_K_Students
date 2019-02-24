@@ -148,7 +148,7 @@ int StudentAI::min_move(pair<int, int> &spot, int depth, int &alpha, int &beta){
 
 // @return: board's evaluation score
 // @usage: emulate AI's move and the following moves
-int StudentAI::max_move(pair<int, int> &spot, int depth, int alpha, int beta){
+int StudentAI::max_move(pair<int, int> &spot, int depth, int &alpha, int &beta){
 
 	// check for end game
 	//int score = evaluate_board(2);	// i = AI's turn
