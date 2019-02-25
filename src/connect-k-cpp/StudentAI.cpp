@@ -206,9 +206,10 @@ int StudentAI::max_move(pair<int, int> &spot, int depth, int &alpha, int &beta){
 // @usage：based on the line'e empty spots and number of same color pieces
 int StudentAI::score_dict(int empty, int pieces, int k){
 	if(pieces >= k-1) return pow(10, k+5);
+	if(pieces >= k-1) return pow(10, k+3);
 	if(pieces == 0) return 0;
 	k--;
-	while(k > 0){
+	while(k > 1){
 		if(pieces == k){
 			if(empty >= 2) return pow(10, k+1);	// was empty >= 2
 			else if(empty == 1) return pow(10, k-1);
