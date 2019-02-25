@@ -265,8 +265,8 @@ void StudentAI::find_empty(vector<pair<int, int> > &valid){
 			for(int j = my_board.row - 1; j >= 0; j--){
 				if(my_board.board[j][i] == 0){
 					// pick only lowest one in each row
-					if(non_empty_neighbor(j, i))
-						valid.push_back(make_pair(j, i));
+					//if(non_empty_neighbor(j, i))
+					valid.push_back(make_pair(j, i));
 					break;
 				}
 			}
