@@ -212,7 +212,7 @@ int StudentAI::score_dict(int empty, int pieces, int k){
 	while(k > 1){
 		if(pieces == k){
 			if(empty >= 2) return pow(10, k+1);	// was empty >= 2
-			else if(empty == 1) return pow(10, k-1);
+			else if(empty == 1) return pow(10, k);
 		} 
 		k--;
 	}
