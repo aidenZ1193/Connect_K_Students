@@ -60,6 +60,7 @@ Move StudentAI::GetMove(Move board)
 			if(my_board.board[i][board.col] == 0){
 				update_min_max_row(Move(i,board.col));
 				my_board.board[i][board.col] = 2;
+				break;
 			}
 		}
 	}
