@@ -31,7 +31,8 @@ Move StudentAI::GetMove(Move board)
 {
 	
 	Move m;
-	
+	cout<<"min col = "<<min_col<<endl;
+
 	// 1. eveluate board, put move in board
 	if(board.col == -1 && board.row == -1){
 		// start first: return the spot in the middle
@@ -386,7 +387,7 @@ int StudentAI::evaluate_both(int i, int j){
 	ai = evaluate_board(1);
 	opponent = evaluate_board(2);
 
-	//cout<<"i = "<<i<<", j = "<<j<<" ai score = "<<ai<<" opponent score = "<<opponent<<endl;
+	cout<<"i = "<<i<<", j = "<<j<<" ai score = "<<ai<<" opponent score = "<<opponent<<endl;
 	return ai + opponent;
 	// before furture adjusting: this version beats poorAI in no gravity modes mostly.
 }
