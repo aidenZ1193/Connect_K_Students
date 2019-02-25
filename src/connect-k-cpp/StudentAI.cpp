@@ -31,7 +31,7 @@ Move StudentAI::GetMove(Move board)
 {
 	
 	Move m;
-	cout<<"min col = "<<min_col<<endl;
+	//cout<<"min col = "<<min_col<<endl;
 
 	// 1. eveluate board, put move in board
 	if(board.col == -1 && board.row == -1){
