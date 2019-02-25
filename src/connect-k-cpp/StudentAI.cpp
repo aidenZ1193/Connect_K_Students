@@ -20,7 +20,7 @@ void StudentAI::update_min_max_row(Move m){
 		max_col = (m.col + 2 < my_board.col)? m.col + 2 : my_board.col;
 	if(m.row < min_row+2)
 		min_row = (m.row - 2 > 0)? m.row - 2 : 0;
-	if(m.row > max_row+2)
+	if(m.row > max_row-2)
 		max_row = (m.row + 2 < my_board.row)? m.row + 2 : my_board.row;
 }
 
