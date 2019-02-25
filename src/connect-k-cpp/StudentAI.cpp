@@ -395,7 +395,7 @@ int StudentAI::evaluate_both(int i, int j){
 	//ai = evaluate_board(1);
 	//opponent = evaluate_board(2);
 
-	//cout<<"i = "<<i<<", j = "<<j<<" ai score = "<<ai<<" opponent score = "<<opponent<<endl;
+	cout<<"i = "<<i<<", j = "<<j<<" ai score = "<<ai<<" opponent score = "<<opponent<<endl;
 	return ai + opponent;
 	// before furture adjusting: this version beats poorAI in no gravity modes mostly.
 	// current condition: mostly wins or ties! Need furthur testing
