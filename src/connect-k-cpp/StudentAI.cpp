@@ -262,7 +262,7 @@ void StudentAI::find_empty(vector<pair<int, int> > &valid){
 		}
 	}else{
 		// enabled gravity, pick from lowest in each column
-		for(int i = min_col; i < max_col; i++ ){
+		for(int i = 0; i < max_col; i++ ){
 			for(int j = my_board.row - 1; j >= 0; j--){
 				if(my_board.board[j][i] == 0){
 					// pick only lowest one in each row
