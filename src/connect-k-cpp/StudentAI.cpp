@@ -266,9 +266,10 @@ void StudentAI::find_empty(vector<pair<int, int> > &valid){
 		
 		for(int j = 0; j < max_col; j++){
 			for(int i = my_board.row - 1; i >= 0; i--){
+				cout<<"checkinging i, j = "<<i<<" "<<j<<endl;
 				if(my_board.board[i][j] == 0 && non_empty_neighbor(i,j)){
 					valid.push_back(make_pair(i,j));
-					cout<<"pushing i, j = "<<i<<" "<<j<<"in valid."<<endl;
+					cout<<"pushing i, j = "<<i<<" "<<j<<" in valid."<<endl;
 					break;
 				}
 			}
