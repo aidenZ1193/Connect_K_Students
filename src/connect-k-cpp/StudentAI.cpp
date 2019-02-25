@@ -150,10 +150,12 @@ int StudentAI::min_move(pair<int, int> &spot, int depth, int &alpha, int &beta){
 
 		my_board.board[valid[i].first][valid[i].second] = 0;
 
+		/*
 		if(min_score < beta){
 			beta = min_score;
 			break;
 		}
+		*/
 	}
 	return min_score;
 }
@@ -193,10 +195,12 @@ int StudentAI::max_move(pair<int, int> &spot, int depth, int &alpha, int &beta){
 		
 		my_board.board[valid[i].first][valid[i].second] = 0;	
 		
+		/*
 		if(max_score > alpha){
 			alpha = max_score;
 			break;
 		}
+		*/
 	
 	}
 	return max_score;
