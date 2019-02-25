@@ -264,10 +264,11 @@ void StudentAI::find_empty(vector<pair<int, int> > &valid){
 	}else{
 		// enabled gravity, pick from lowest in each column
 		
-		for(int j = min_col; j < max_col; j++){
+		for(int j = 0; j < max_col; j++){
 			for(int i = my_board.row - 1; i >= 0; i--){
 				if(my_board.board[i][j] == 0 && non_empty_neighbor(i,j)){
 					valid.push_back(make_pair(i,j));
+					cout<<"pushing i, j = "<<i<<" "<<j<<"in valid."<<endl;
 					break;
 				}
 			}
@@ -371,7 +372,7 @@ int StudentAI::evaluate_board(int turn){
 	int sum = 0;
 
 	for(int i = min_row; i < max_row; i++){
-		for(int j = 0; j < max_col; j++){
+		for(int j = min_col; j < max_col; j++){
 			sum += evaluate_single_space(i, j, turn);
 		}
 	}
