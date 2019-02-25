@@ -37,8 +37,14 @@ Move StudentAI::GetMove(Move board)
 		// start first: return the spot in the middle
 		update_min_max_row(board);
 		my_board.board[my_board.row/2][my_board.col/2] = 1;
-		m.row = my_board.row/2;
-		m.col = my_board.col/2;
+		if(my_board.g == 0){
+			m.row = my_board.row/2;
+			m.col = my_board.col/2;
+		}else{
+			m.row = my_board.row-1;
+			m.col = my_board.col/2;
+		}
+		my_board.board[m.row][m.col] = 1;
 		// update min, max values
 		update_min_max_row(m);
 		return m;
