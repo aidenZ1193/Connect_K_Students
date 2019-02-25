@@ -206,7 +206,7 @@ int StudentAI::max_move(pair<int, int> &spot, int depth, int &alpha, int &beta){
 int StudentAI::score_dict(int empty, int pieces, int k){
 	if(pieces >= k-1) return pow(10, k+5);
 	k--;
-	while(k > 0){
+	while(k > 1){
 		if(pieces == k){
 			if(empty >= 2) return pow(10, k+1);	// was empty >= 2
 			else if(empty == 1) return pow(10, k-1);
@@ -262,21 +262,10 @@ void StudentAI::find_empty(vector<pair<int, int> > &valid){
 		}
 	}else{
 		// enabled gravity, pick from lowest in each column
-		/*
-		for(int i = 0; i < max_col; i++ ){
-			for(int j = my_board.row - 1; j >= 0; j--){
-				if(my_board.board[j][i] == 0){
-					// pick only lowest one in each row
-					//if(non_empty_neighbor(j, i))
-					valid.push_back(make_pair(j, i));
-					break;
-				}
-			}
-		}
-		*/
+		
 		for(int i = my_board.row - 1; i >= 0; i--){
 			for(int j = min_col; j < max_col; j++){
-				if(my_board.board[i][j] == 0){
+				if(my_board.board[i][j] == 0 && non_empty_neighbor(i, j)){
 					valid.push_back(make_pair(i, j));
 					break;
 				}
