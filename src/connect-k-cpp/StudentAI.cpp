@@ -371,7 +371,7 @@ int StudentAI::evaluate_board(int turn){
 	int sum = 0;
 
 	for(int i = min_row; i < max_row; i++){
-		for(int j = min_col; j < max_col; j++){
+		for(int j = 0; j < max_col; j++){
 			sum += evaluate_single_space(i, j, turn);
 		}
 	}
